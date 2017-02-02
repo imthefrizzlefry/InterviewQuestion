@@ -1,0 +1,19 @@
+{
+  "name": "hbo-questions",
+  "version": "1.0.0",
+  "description": "interview question",
+  "main": "combinedString.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "hbo-question"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
