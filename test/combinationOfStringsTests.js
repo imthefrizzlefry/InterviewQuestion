@@ -43,6 +43,7 @@ describe("Function to check that strings A and B cannot be combined to make stri
   });
   it("Should not allow extra characters in string C", function(){
     Combinations.combinationOfStrings("abc", "123", "a1b2c34d").should.be.false;
+    Combinations.combinationOfStrings("", "", "a").should.be.false;
   });
   it("Should not match characters from string C that are out of order", function(){
     Combinations.combinationOfStrings("abc", "123", "3a1b2c").should.be.false;
