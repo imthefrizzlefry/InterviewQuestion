@@ -25,7 +25,13 @@ describe("Function to check if strings A and B can combined to make string C", f
     Combinations.combinationOfStrings("123", "aBcd", "a1B2cd3").should.be.true;
     Combinations.combinationOfStrings("123", "abcD", "a1b2cD3").should.be.true;
   });
-
+  it("Should match all empty strings", function(){
+    Combinations.combinationOfStrings("", "", "").should.be.true;
+  });
+  it("Should match A or B is an empty string", function(){
+    Combinations.combinationOfStrings("a", "", "a").should.be.true;
+    Combinations.combinationOfStrings("", "z", "z").should.be.true;
+  });
 });
 
 describe("Function to check that strings A and B cannot be combined to make string C", function(){
