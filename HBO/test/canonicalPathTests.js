@@ -26,7 +26,7 @@ describe("The Canonical path method", function(){
       
       var expectedPath = desiredCurrentDirectory;
       var actualPath = CanonicalPath.Get(".\\");
-    actualPath.should.equal(expectedPath);
+      actualPath.should.equal(expectedPath);
     });
 
     it("Should be able to find the current user's home directory", function(){
