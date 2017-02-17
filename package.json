@@ -1,7 +1,7 @@
 {
-  "name": "hbo-questions",
+  "name": "interview-questions",
   "version": "1.0.0",
-  "description": "interview question",
+  "description": "code for questions I have been asked at interviews",
   "main": "combinedString.js",
   "scripts": {
     "test": "mocha"
