@@ -1,6 +1,6 @@
 var assert = require("assert");
 var chai = require('chai');
-var Combinations = require('../combinedString');
+var Combinations = require('../src/combinedString');
 chai.should();
 
 describe("Function to check if strings A and B can combined to make string C", function(){
