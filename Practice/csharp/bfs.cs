@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Console;
 
 namespace Graph
 {
@@ -8,15 +10,21 @@ namespace Graph
         public Node Left;
         public Node Right;
 
-        Node()
+        public Node(int val)
         {
-            // insert data 
+            this.Value = val;
+        }
+
+        public AddNode(int val)
+        {
+            // traverse to bottom of tree
+            // if 
         }
 
     }
     public Class Bfs
     {
-        public void BreadthFirstSearch(Node root)
+        public static void BreadthFirstSearch(Node root)
         {
             Queue<Node> q = new Queue<Node>();
             q.Enqueue(root);
@@ -28,7 +36,7 @@ namespace Graph
                 q.Enqueue(current.Left);
                 q.Enqueue(current.Right);
 
-                DoSomething(current);
+                Console.WriteLine(current.Value);
             }
         }
     }
