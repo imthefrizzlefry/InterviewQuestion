@@ -1,3 +1,4 @@
+'use strict'
 var assert = require("assert");
 var chai = require('chai');
 var StringFormat = require('../src/stringFormat.js');
