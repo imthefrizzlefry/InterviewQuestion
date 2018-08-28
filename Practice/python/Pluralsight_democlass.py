@@ -41,15 +41,18 @@ class Flight:
     def seat(self):
         return self._seat
 
-    def saveFile(self):
-        f = open('temp.csv', mode='wt', encoding='utf-8')
+    def display(self):
+        print('You are in seat {0} on flight {1}'.format(self._seat, self._number))
+
+    def saveFile(self, filename='temp.csv'):
+        f = open(filename, mode='wt', encoding='utf-8')
         f.write('{0},{1}'.format(self.number(), self.seat()))
         f.close()
 
-    def loadFile(self):
-        f = open('temp.csv', mode='rt', encoding='utf-8')
-        temp = f.read().split(',')
-        self._number = temp[0]
-        self._seat = temp[1]
+    def loadFile(self, filename='temp.csv'):
+        f = open(filename, mode='rt', encoding='utf-8')
+        self._number, self._seat = f.read().split(',')
+        #self._number = temp[0]
+        #self._seat = temp[1]
         f.close()
         
