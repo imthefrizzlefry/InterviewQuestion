@@ -5,6 +5,7 @@
 # n = number of payments
 
 import datetime
+import csv
 
 def CalcMonthlyPayment(principal, interest, nunOpayments):
     r = interest/12
@@ -29,8 +30,6 @@ def LoanSummary(principal, interest, payments, originationDate = datetime.date.t
     total = monthly * payments
     maturityDate = LoanMaturity(payments, originationDate)
 
-    
-
     print('Regarding Your original loan of ${0:,.2f} at an interest rate of {1:.3%} spread across {2} payments'.format(principal, interest, payments))
     print('Your date originated on {0}, and it should be paid off by {1}'.format(originationDate, maturityDate))
     print('You will pay ${0:,.2f} per Month'.format(monthly))
@@ -38,5 +37,23 @@ def LoanSummary(principal, interest, payments, originationDate = datetime.date.t
     print('You will pay ${0:,.2f} in interest'.format(total-principal))
 
 
+def SummarizeMyLoans(filename = 'loanList.csv'):
+
+    with open(filename, 'r') as myCSVFile:
+        dataFromFile = csv.reader(myCSVFile)
+        headerParsed = False
+
+        for loan in dataFromFile:
+            if headerParsed:
+                print('------------------------------------ {0} ------------------------------------'.format(loan[0]))
+                LoanSummary(float(loan[1]), float(loan[2]), int(loan[3]), datetime.datetime.strptime(loan[4], '%Y-%m-%d').date())
+
+            else:
+                # headers = loan #first row is the headers...
+                headerParsed = True
+
+
+
 if __name__ == '__main__':
-    LoanSummary(32063.65, 0.0190, 60)
+    #LoanSummary(32063.65, 0.0190, 60)
+    SummarizeMyLoans()
