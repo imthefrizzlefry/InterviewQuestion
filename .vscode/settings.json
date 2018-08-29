@@ -1,5 +1,6 @@
 {
     "python.unitTest.unittestArgs": [
+        "-b",
         "-v",
         "-s",
         "./Practice/python",
@@ -9,5 +10,7 @@
     "python.unitTest.unittestEnabled": true,
     "python.unitTest.pyTestEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.terminal.executeInFileDir": true,
+    "python.unitTest.cwd": "./Practice/python"
 }

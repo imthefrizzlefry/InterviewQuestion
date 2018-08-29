@@ -1,5 +1,6 @@
 import unittest
-from mortgageCalc import CalcMonthlyPayment
+import datetime
+import mortgageCalc
 
 class mortgageCalcTests(unittest.TestCase):
     def test_calculatesMyMortgageCorrectly(self):
@@ -8,7 +9,7 @@ class mortgageCalcTests(unittest.TestCase):
         inputPayments = 360
         expectedResult = 2454.64
 
-        self.assertEqual(expectedResult, float('{0:.2f}'.format(CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
+        self.assertEqual(expectedResult, float('{0:.2f}'.format(mortgageCalc.CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
 
     def test_calculatesEnerbankCorrectly(self):
         inputPrincipal = 15106
@@ -16,7 +17,7 @@ class mortgageCalcTests(unittest.TestCase):
         inputPayments = 84
         expectedResult = 227.92
 
-        self.assertEqual(expectedResult, float('{0:.2f}'.format(CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
+        self.assertEqual(expectedResult, float('{0:.2f}'.format(mortgageCalc.CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
 
     def test_calculatesHondaLoanCorrectly(self):
         inputPrincipal = 32063.65
@@ -24,5 +25,25 @@ class mortgageCalcTests(unittest.TestCase):
         inputPayments = 60
         expectedResult = 560.60
 
-        self.assertEqual(expectedResult, float('{0:.2f}'.format(CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
+        self.assertEqual(expectedResult, float('{0:.2f}'.format(mortgageCalc.CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
 
+    def test_maturityDateIsCalculatedCorrectly(self):
+        inputOriginationDate = datetime.date(2018, 5, 10)
+        inputNumberOfPayments = 5
+        expectedMaturityDate = datetime.date(2018, 10, 10)
+
+        self.assertEqual(expectedMaturityDate, mortgageCalc.LoanMaturity(inputNumberOfPayments, inputOriginationDate))
+
+    def test_maturityDateHandlesYearRollover(self):
+        inputOriginationDate = datetime.date(2018, 10, 10)
+        inputNumberOfPayments = 5
+        expectedMaturityDate = datetime.date(2019, 3, 10)
+
+        self.assertEqual(expectedMaturityDate, mortgageCalc.LoanMaturity(inputNumberOfPayments, inputOriginationDate))
+
+    def test_maturityDateWorksForMultiYearLoans(self):
+        inputOriginationDate = datetime.date(2018, 5, 10)
+        inputNumberOfPayments = 60
+        expectedMaturityDate = datetime.date(2023, 5, 10)
+
+        self.assertEqual(expectedMaturityDate, mortgageCalc.LoanMaturity(inputNumberOfPayments, inputOriginationDate))
