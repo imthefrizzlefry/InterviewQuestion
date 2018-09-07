@@ -3,14 +3,12 @@
         "-b",
         "-v",
         "-s",
-        "./Practice/python",
+        ".",
         "-p",
         "test_*.py"
     ],
-    "python.unitTest.unittestEnabled": true,
-    "python.unitTest.pyTestEnabled": false,
-    "python.unitTest.nosetestsEnabled": false,
     "python.linting.enabled": true,
     "python.terminal.executeInFileDir": true,
-    "python.unitTest.cwd": "./Practice/python"
+    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.cwd": ".\\Practice\\python\\"
 }
