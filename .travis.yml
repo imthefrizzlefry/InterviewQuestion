@@ -4,3 +4,4 @@ python:
 
 script:
   - python -m unittest discover -s './Practice/python/' -p 'test_*.py' -v
+  - npm test
