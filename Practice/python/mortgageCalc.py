@@ -8,9 +8,12 @@ import datetime
 import csv
 
 def CalcMonthlyPayment(principal, interest, nunOpayments):
-    r = interest/12
-    a = principal * r * ((1 + r) ** nunOpayments) 
-    b = ((1 + r) ** nunOpayments - 1)
+    if interest == 0:
+        return principal/nunOpayments
+    else:
+        r = interest/12
+        a = principal * r * ((1 + r) ** nunOpayments) 
+        b = ((1 + r) ** nunOpayments - 1)
     return a/b
 
 def LoanMaturity(payments, originationDate = datetime.date.today()):

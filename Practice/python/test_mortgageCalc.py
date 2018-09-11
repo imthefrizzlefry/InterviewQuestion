@@ -27,6 +27,14 @@ class mortgageCalcTests(unittest.TestCase):
 
         self.assertEqual(expectedResult, float('{0:.2f}'.format(mortgageCalc.CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
 
+        def test_InterestRateIsZero(self):
+            inputPrincipal = 10000.0
+            inputinterest = 0.0
+            inputPayments = 15
+            expectedResult = 666.67
+
+            self.assertEqual(expectedResult, float('{0:.2f}'.format(mortgageCalc.CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
+
     def test_maturityDateIsCalculatedCorrectly(self):
         inputOriginationDate = datetime.date(2018, 5, 10)
         inputNumberOfPayments = 5
@@ -47,3 +55,6 @@ class mortgageCalcTests(unittest.TestCase):
         expectedMaturityDate = datetime.date(2023, 5, 10)
 
         self.assertEqual(expectedMaturityDate, mortgageCalc.LoanMaturity(inputNumberOfPayments, inputOriginationDate))
+
+    
+        
