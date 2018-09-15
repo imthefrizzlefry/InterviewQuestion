@@ -35,6 +35,20 @@ class mortgageCalcTests(unittest.TestCase):
 
             self.assertEqual(expectedResult, float('{0:.2f}'.format(mortgageCalc.CalcMonthlyPayment(inputPrincipal, inputinterest, inputPayments))))
 
+    def test_calcPaymentsCompleteSameYear(self):
+        inputOriginationDate = datetime.date(2018, 5, 10)
+        inputEndDate = datetime.date(2018, 6, 10)
+        expectedNumberOfPayments = 1
+
+        self.assertEqual(expectedNumberOfPayments, mortgageCalc.completedPayments(inputOriginationDate,inputEndDate))
+
+    def test_calcPaymentsCompleteNextYear(self):
+        inputOriginationDate = datetime.date(2018, 5, 10)
+        inputEndDate = datetime.date(2019, 6, 10)
+        expectedNumberOfPayments = 13
+
+        self.assertEqual(expectedNumberOfPayments, mortgageCalc.completedPayments(inputOriginationDate,inputEndDate))
+
     def test_maturityDateIsCalculatedCorrectly(self):
         inputOriginationDate = datetime.date(2018, 5, 10)
         inputNumberOfPayments = 5
@@ -56,5 +70,20 @@ class mortgageCalcTests(unittest.TestCase):
 
         self.assertEqual(expectedMaturityDate, mortgageCalc.LoanMaturity(inputNumberOfPayments, inputOriginationDate))
 
-    
+    def test_calculateRemainingBalanceSinglePayment(self):
+        inputPrincipal = 100
+        inputInterest = .12
+        inputPaymentAmount = 10
+        inputNumberOfPayments = 1
+        expectedRemainingPrincipal = 91
+
+        self.assertEqual(expectedRemainingPrincipal, mortgageCalc.CalcRemainingPrincipal(inputPrincipal, inputInterest, inputPaymentAmount, inputNumberOfPayments))
         
+    def test_calculateRemainingBalanceSinglePaymentZeroInterest(self):
+        inputPrincipal = 100
+        inputInterest = 0.0
+        inputPaymentAmount = 10
+        inputNumberOfPayments = 1
+        expectedRemainingPrincipal = 90
+
+        self.assertEqual(expectedRemainingPrincipal, mortgageCalc.CalcRemainingPrincipal(inputPrincipal, inputInterest, inputPaymentAmount, inputNumberOfPayments))
