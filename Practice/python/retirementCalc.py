@@ -69,9 +69,6 @@ class RetirementCalc:
             # decrease contribution
 
 
-    
-    #def calcContributionForGoalAge(self, goalAge=65):
-
 if __name__ == '__main__':
     # do by default
     x = RetirementCalc(age=35, income= 200181.18, balance= 123435.12, contributionRate=0.1421, growthRate=0.06)
