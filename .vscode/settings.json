@@ -11,5 +11,5 @@
     "python.terminal.executeInFileDir": true,
     "python.unitTest.unittestEnabled": true,
     "python.unitTest.cwd": ".\\Practice\\python\\",
-    "python.pythonPath": "C:\\Users\\sfarnell\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe"
+    "python.pythonPath": "C:\\Program Files\\Python36\\python.exe"
 }

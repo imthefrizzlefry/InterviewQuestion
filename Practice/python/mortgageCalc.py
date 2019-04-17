@@ -17,11 +17,13 @@ def CalcMonthlyPayment(principal, interest, numOpayments):
     return a/b
 
 def CalcRemainingPrincipal(principal, interest, paymentAmt, numOPayments):
+    print("Starting Balance: ${0:,.2f}".format(principal))
     if interest == 0:
         return principal - (paymentAmt * numOPayments)
     else:
         for x in range(numOPayments):
             principal = principal * (1 + (interest/12)) - paymentAmt
+            print("Principal After {0} Payments: ${1:,.2f}".format(x+1, principal))
         return principal
 
 def completedPayments(originationDate, EndDate = datetime.date.today()):
@@ -83,16 +85,16 @@ def SummarizeMyLoans(filename = 'loanList.csv'):
 
 if __name__ == '__main__':
     #LoanSummary(32063.65, 0.0190, 60)
-    SummarizeMyLoans()
+    #SummarizeMyLoans()
 
-    print('========--------========--------========--------========--------========')
+    # print('========--------========--------========--------========--------========')
 
-    transBalance = CalcRemainingPrincipal(10419.54, 0.0, 201.00, 6)
-    newOrigination = LoanMaturity(6)
-    print(' We will transfer a balance of ${0:,.2f}'.format(transBalance))
-    LoanSummary(transBalance, 0.0, 15,newOrigination)
+    # transBalance = CalcRemainingPrincipal(10419.54, 0.0, 201.00, 6)
+    # newOrigination = LoanMaturity(6)
+    # print(' We will transfer a balance of ${0:,.2f}'.format(transBalance))
+    # LoanSummary(transBalance, 0.0, 15,newOrigination)
 
     print('========--------========--------========--------========--------========')
     EnerbankOriginationDate = datetime.date(2018, 4, 17)
     EnerbankPaymentsTodate = completedPayments(EnerbankOriginationDate)
-    print('Remaining Enerbank Balance ${0:,.2f}'.format(CalcRemainingPrincipal(15106,0.0699, 227.92, EnerbankPaymentsTodate)))
+    print('Remaining Enerbank Balance Now: ${0:,.2f}'.format(CalcRemainingPrincipal(15106,0.0699, 227.92, EnerbankPaymentsTodate)))
