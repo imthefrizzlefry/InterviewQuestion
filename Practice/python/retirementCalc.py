@@ -68,10 +68,19 @@ class RetirementCalc:
         }
             # decrease contribution
 
+def calcCompoundInterest(currentValue = 0, contributions = 0, numYears = 30, annualReturn = .06):
+    if numYears > 1 :
+        previousValue = calcCompoundInterest(currentValue, contributions, numYears-1, annualReturn)
+    else:
+        previousValue = currentValue
+
+    return (previousValue + contributions) * (1 + annualReturn)
 
 if __name__ == '__main__':
     # do by default
-    x = RetirementCalc(age=35, income= 200181.18, balance= 123435.12, contributionRate=0.1421, growthRate=0.06)
-    print(x.calcProjectedRetirementAge())
+    #x = RetirementCalc(age=35, income= 200181.18, balance= 123435.12, contributionRate=0.1421, growthRate=0.06)
+    #print(x.calcProjectedRetirementAge())
 
-    print(x.calcContributionAmountByRetirementAge())
+    #print(x.calcContributionAmountByRetirementAge())
+
+    print(calcCompoundInterest(120000,11000,30,0.06))
