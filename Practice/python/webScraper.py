@@ -3,6 +3,20 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 
+def getZestimate():
+    myurl="https://www.redfin.com/WA/Kirkland/8921-NE-142nd-St-98034/home/279282"
+    #myurl="https://www.zillow.com//homedetails/8921-NE-142nd-St-Kirkland-WA-98034/48881717_zpid/"
+    
+    rawSiteContent=simple_get(myurl)
+    print(rawSiteContent)
+    
+    #html = BeautifulSoup(rawSiteContent, 'html.parser')
+
+    #for div in html.select('div'):
+    #    if div['class'] == "statsValue":
+    #        print(div.text)
+
+
 def simple_get(url):
     """
     Attempts to get the content at `url` by making an HTTP GET request.
@@ -11,6 +25,7 @@ def simple_get(url):
     """
     try:
         with closing(get(url, stream=True)) as resp:
+            print(resp)
             if is_good_response(resp):
                 return resp.content
             else:
@@ -39,3 +54,5 @@ def log_error(e):
     """
     print(e)
 
+if __name__ == '__main__':
+    getZestimate()

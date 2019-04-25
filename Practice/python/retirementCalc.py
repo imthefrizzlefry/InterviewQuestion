@@ -81,6 +81,6 @@ if __name__ == '__main__':
     #x = RetirementCalc(age=35, income= 200181.18, balance= 123435.12, contributionRate=0.1421, growthRate=0.06)
     #print(x.calcProjectedRetirementAge())
 
-    #print(x.calcContributionAmountByRetirementAge())
+    print(x.calcContributionAmountByRetirementAge())
 
-    print(calcCompoundInterest(120000,11000,30,0.06))
+    #print(calcCompoundInterest(120000,11000,30,0.06))
