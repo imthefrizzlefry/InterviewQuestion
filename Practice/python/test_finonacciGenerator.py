@@ -14,8 +14,8 @@ class fibonacciGeneratorTests(unittest.TestCase):
 
         self.assertEqual(expectedResult, fib.__next__())
         
-    def test_return_ThirtyFirst_NumberInSequence(self):
-        expectedResult = 3
+    def test_return_Third_NumberInSequence(self):
+        expectedResult = 4
         fib = fibonacciGenerator.fibonacci_gen()
         for _ in range(3):
             fib.__next__()
