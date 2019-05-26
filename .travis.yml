@@ -7,5 +7,5 @@ install:
   - npm install
 
 script:
-  - pytest --rootdir=./Practice/python
+  - pytest ./Practice/python
   - npm test
