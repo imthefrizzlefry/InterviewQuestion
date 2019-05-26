@@ -3,8 +3,8 @@ import webScraper
 
 class webScraperTests(unittest.TestCase):
      def test_webScraperGetsCorrectLength(self):
-         expectedLength = 8579
-         raw_html = webScraper.simple_get('https://home.stevenfarnell.net')
+         expectedLength = 13901
+         raw_html = webScraper.simple_get('https://home.stevenfarnell.net/index.php/s/6dGGMWErq4PKWKH')
          self.assertEqual(len(raw_html), expectedLength)
 
      def test_webScraperThrowsExceptionOnInvalidPage(self):        

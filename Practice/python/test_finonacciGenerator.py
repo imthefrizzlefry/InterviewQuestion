@@ -17,7 +17,7 @@ class fibonacciGeneratorTests(unittest.TestCase):
         
     def test_return_Third_NumberInSequence(self):
         inputIteration = 3
-        expectedResult = 4
+        expectedResult = 3
         fib = fibonacciGenerator.fibonacci_gen()
         for _ in range(inputIteration):
             next(fib)

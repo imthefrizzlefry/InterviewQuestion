@@ -41,7 +41,7 @@ class RetirementCalc:
         else:
             retirementStatus = "You are on track to die while working"
 
-        return [projectedAge, retirementBalance, retirementStatus]
+        return [projectedAge, round(retirementBalance, 2), retirementStatus]
 
     def calcContributionAmountByRetirementAge(self, age = 65):
         projectedAge = self.calcProjectedRetirementAge()[0]
