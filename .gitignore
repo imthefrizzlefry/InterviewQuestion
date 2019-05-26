@@ -80,3 +80,5 @@ $RECYCLE.BIN/
 
 # python generated files
 *.pyc
+.pytest_cache/v/cache/nodeids
+.pytest_cache/v/cache/stepwise
