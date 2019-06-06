@@ -1,24 +1,24 @@
 import unittest
-import deepCopy
+from deepCopy import Node
 
 class deepCopyTests(unittest.TestCase):
     
     def test_createNodeWithExpectedValue(self):
         expectedValue = 1.0
 
-        inputNode = deepCopy.Node(expectedValue)
+        inputNode = Node(expectedValue)
 
         self.assertEqual(expectedValue, inputNode.value)
 
     def test_createNodeWithExpectedChildren(self):
         expectedChildren = [1,2,3,4,5]
 
-        inputNode = deepCopy.Node(1, expectedChildren)
+        inputNode = Node(1, expectedChildren)
 
         self.assertEqual(expectedChildren, inputNode.children)
 
     def test_deepCopySimpleNote(self):
-        inputA = deepCopy.Node(1.0, [])
+        inputA = Node(1.0, [])
         inputB = inputA.deep_copy()
 
         inputA.value = 2.0
@@ -26,7 +26,7 @@ class deepCopyTests(unittest.TestCase):
         self.assertEqual(1.0, inputB.value)
         self.assertEqual(2.0, inputA.value)
     def test_deepCopypreservesListContents(self):
-        inputA = deepCopy.Node(1.0, [deepCopy.Node(2.0)])
+        inputA = Node(1.0, [Node(2.0)])
         inputB = inputA.deep_copy()
 
         inputA.children[0].value = 3.0
@@ -34,8 +34,8 @@ class deepCopyTests(unittest.TestCase):
         self.assertEqual(2.0, inputB.children[0].value)
         self.assertEqual(3.0, inputA.children[0].value)
     def test_deepCopyInterDependancyPreservesLinks(self):
-        inputA = deepCopy.Node(1.0)
-        inputB = deepCopy.Node(2.0,[inputA])
+        inputA = Node(1.0)
+        inputB = Node(2.0,[inputA])
         inputA.children.append(inputB)
 
         inputC = inputA.deep_copy()

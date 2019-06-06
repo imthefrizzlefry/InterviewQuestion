@@ -6,6 +6,7 @@
 
 import datetime
 import csv
+import logging
 
 def CalcMonthlyPayment(principal, interest, numOpayments):
     if interest == 0:
@@ -16,14 +17,15 @@ def CalcMonthlyPayment(principal, interest, numOpayments):
         b = ((1 + r) ** numOpayments - 1)
     return a/b
 
-def CalcRemainingPrincipal(principal, interest, paymentAmt, numOPayments):
+def CalcRemainingPrincipal(principal, interest, paymentAmt, numOPayments, verbose=False):
     print("Starting Balance: ${0:,.2f}".format(principal))
-    if interest == 0:
+    if not verbose and interest == 0:
+        logging.debug("No Interest so returning product of: ${0:,.2f} and {1}".format(paymentAmt, numOPayments))
         return principal - (paymentAmt * numOPayments)
     else:
         for x in range(numOPayments):
             principal = principal * (1 + (interest/12)) - paymentAmt
-            print("Principal After {0} Payments: ${1:,.2f}".format(x+1, principal))
+            logging.debug("Principal After {0} Payments: ${1:,.2f}".format(x+1, principal))
         return principal
 
 def completedPayments(originationDate, EndDate = datetime.date.today()):
@@ -47,12 +49,12 @@ def LoanMaturity(payments, originationDate = datetime.date.today()):
 
     return maturityDate
 
-def LoanSummary(principal, interest, payments, originationDate = datetime.date.today()):
+def LoanSummary(principal, interest, payments, originationDate = datetime.date.today(), verbose=False):
     monthly = CalcMonthlyPayment(principal, interest, payments)
     total = monthly * payments
     maturityDate = LoanMaturity(payments, originationDate)
     paymentsSoFar = completedPayments(originationDate)
-    remainingPrincipal = CalcRemainingPrincipal(principal,interest, monthly, paymentsSoFar)
+    remainingPrincipal = CalcRemainingPrincipal(principal,interest, monthly, paymentsSoFar, verbose)
 
     print('Regarding Your original loan of ${0:,.2f} at an interest rate of {1:.3%} spread across {2} payments'.format(principal, interest, payments))
     print('Your date originated on {0}, and it should be paid off by {1}'.format(originationDate, maturityDate))
@@ -61,7 +63,7 @@ def LoanSummary(principal, interest, payments, originationDate = datetime.date.t
     print('You will pay ${0:,.2f} in interest'.format(total-principal))
     print('Remaining Balance as of now is ${0:,.2f}'.format(remainingPrincipal))
 
-def SummarizeMyLoans(filename = 'loanList.csv'):
+def SummarizeMyLoans(filename = './Practice/Python/JustForFun/loanList.csv', verbose=False):
 
     with open(filename, 'r') as myCSVFile:
         dataFromFile = csv.reader(myCSVFile)
@@ -76,7 +78,7 @@ def SummarizeMyLoans(filename = 'loanList.csv'):
                 originationDate = datetime.datetime.strptime(loan[4], '%Y-%m-%d').date()
 
                 print('------------------------------------ {0} ------------------------------------'.format(loanName))
-                LoanSummary(principal, interest, payments, originationDate)
+                LoanSummary(principal, interest, payments, originationDate, verbose)
                 
             else:
                 # headers = loan #first row is the headers...
@@ -84,8 +86,10 @@ def SummarizeMyLoans(filename = 'loanList.csv'):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
+
     #LoanSummary(32063.65, 0.0190, 60)
-    #SummarizeMyLoans()
+    SummarizeMyLoans(verbose=True)
 
     # print('========--------========--------========--------========--------========')
 
@@ -94,7 +98,7 @@ if __name__ == '__main__':
     # print(' We will transfer a balance of ${0:,.2f}'.format(transBalance))
     # LoanSummary(transBalance, 0.0, 15,newOrigination)
 
-    print('========--------========--------========--------========--------========')
-    EnerbankOriginationDate = datetime.date(2018, 4, 17)
-    EnerbankPaymentsTodate = completedPayments(EnerbankOriginationDate)
-    print('Remaining Enerbank Balance Now: ${0:,.2f}'.format(CalcRemainingPrincipal(15106,0.0699, 227.92, EnerbankPaymentsTodate)))
+    # print('========--------========--------========--------========--------========')
+    # EnerbankOriginationDate = datetime.date(2018, 4, 17)
+    # EnerbankPaymentsTodate = completedPayments(EnerbankOriginationDate)
+    # print('Remaining Enerbank Balance Now: ${0:,.2f}'.format(CalcRemainingPrincipal(15106,0.0699, 227.92, EnerbankPaymentsTodate)))
