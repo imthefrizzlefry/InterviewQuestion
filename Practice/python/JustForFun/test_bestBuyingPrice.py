@@ -8,6 +8,12 @@ class bestBuyingPriceTests(unittest.TestCase):
 
         self.assertEqual(expectedResult, bestBuyingPrice.findMaxGain(inputArray))
 
+    def test_emptyInputList(self):
+        inputArray=[]
+        expectedResult = 0
+
+        self.assertEqual(expectedResult, bestBuyingPrice.findMaxGain(inputArray))
+
     def test_positiveGain(self):
         inputArray=[5,6]
         expectedResult = 1
