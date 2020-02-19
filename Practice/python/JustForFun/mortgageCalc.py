@@ -9,6 +9,7 @@ import csv
 import logging
 
 def CalcMonthlyPayment(principal, interest, numOpayments):
+    '''Calculate monthly payment to pay off a loan given principal, annual interest rate, and number of payments'''
     if interest == 0:
         return principal/numOpayments
     else:
@@ -18,6 +19,7 @@ def CalcMonthlyPayment(principal, interest, numOpayments):
     return a/b
 
 def CalcRemainingPrincipal(principal, interest, paymentAmt, numOPayments, verbose=False):
+    '''Iterate through monthly payments on a loan and return the remaining balance; optionally print each iteration'''
     print("Starting Balance: ${0:,.2f}".format(principal))
     if not verbose and interest == 0:
         logging.debug("No Interest so returning product of: ${0:,.2f} and {1}".format(paymentAmt, numOPayments))
@@ -29,6 +31,7 @@ def CalcRemainingPrincipal(principal, interest, paymentAmt, numOPayments, verbos
         return principal
 
 def completedPayments(originationDate, EndDate = datetime.date.today()):
+    '''calculates the number of months between two dates (name chosen to provide context for use)'''
     if originationDate >= EndDate:
         return 0
     else:
@@ -38,7 +41,7 @@ def completedPayments(originationDate, EndDate = datetime.date.today()):
         return (yearsPast*12) + monthsPast
 
 def LoanMaturity(payments, originationDate = datetime.date.today()):
-    
+    '''Calculates when a loan will mature if it is paid off in a number of payments (counts number of months in the future)'''
     maturityYear = originationDate.year + (payments//12)
     maturityMonth = originationDate.month + (payments%12)
     if maturityMonth > 12:
@@ -50,6 +53,7 @@ def LoanMaturity(payments, originationDate = datetime.date.today()):
     return maturityDate
 
 def LoanSummary(principal, interest, payments, originationDate = datetime.date.today(), verbose=False):
+    '''Given loan information, run calculations and print the loan summary with an option for printing loan payment iteration details'''
     monthly = CalcMonthlyPayment(principal, interest, payments)
     total = monthly * payments
     maturityDate = LoanMaturity(payments, originationDate)
@@ -64,7 +68,7 @@ def LoanSummary(principal, interest, payments, originationDate = datetime.date.t
     print('Remaining Balance as of now is ${0:,.2f}'.format(remainingPrincipal))
 
 def SummarizeMyLoans(filename = './Practice/Python/JustForFun/loanList.csv', verbose=False):
-
+    '''Parse a CSV file containg loan data, and print the summary data for all of the loans'''
     with open(filename, 'r') as myCSVFile:
         dataFromFile = csv.reader(myCSVFile)
         headerParsed = False
