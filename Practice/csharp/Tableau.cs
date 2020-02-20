@@ -1,5 +1,15 @@
 /*
-Consider a scenario where you are asked to write a simple program that will  take an input stream of integers and output a very similar stream of integers containing only the first instance of any particular integer. The output must be in the same order that the numbers were given to the program, other than the duplicates that were removed. The values of the integers are randomly distributed, and the size (or length) of the stream is completely unknown. What would your general approach and data structures be
+Consider a scenario where you are asked to write 
+a simple program that will take an input stream 
+of integers and output a very similar stream of 
+integers containing only the first instance of 
+any particular integer. The output must be in the 
+same order that the numbers were given to the program, 
+other than the duplicates that were removed. The values 
+of the integers are randomly distributed, and the size 
+(or length) of the stream is completely unknown.
+
+What would your general approach and data structures be
 
 
 Example

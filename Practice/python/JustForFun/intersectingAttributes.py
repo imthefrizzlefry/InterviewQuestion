@@ -1,3 +1,4 @@
+# Asked by a Googler during a phone interview
 #Find the odd one out: 
 # Given a list of words paired with attributes, 
 # find the word that should be excluded to maximize the number of common attributes among the remaining words. 

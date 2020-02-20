@@ -3,6 +3,7 @@ using System.Console;
 
 namespace Graph
 {
+    
     public Class Node 
     {
         //some data
@@ -22,6 +23,7 @@ namespace Graph
         }
 
     }
+
     public Class Bfs
     {
         public static void BreadthFirstSearch(Node root)

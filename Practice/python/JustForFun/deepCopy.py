@@ -1,4 +1,4 @@
-
+# Asked by an ex-Googler during my Google Interview Prep
 class Node:
 	def __init__(self, value=0.0, children=[]):
 		self.value = value
